@@ -1,7 +1,8 @@
 import colors from 'colors';
 import server from "./server"; 
+import { PORT } from './config/data';
 
-server.listen(4000, () => {
-    console.log(colors.bgGreen.white('"Server is running on port 4000"'));
+server.listen(PORT, () => {
+    console.log(colors.bgGreen.white(`Server is running on port ${PORT}`));
 })
 
