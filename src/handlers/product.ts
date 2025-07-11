@@ -5,7 +5,8 @@ import Product from '../models/Product.model';
 export const createProduct = async (req: Request, res: Response) => { 
 
     await check('name')
-            .notEmpty().custom( ( value ) => value.trim().length > 0).withMessage('El nombre de producto no puede estar vacio')
+            .notEmpty().withMessage('El nombre de producto no puede estar vacio')
+            .custom( ( value ) => value.trim().length > 0).withMessage('Nombre de producto no valido')
             .run(req);
     
     await check('price')
