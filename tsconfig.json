@@ -11,5 +11,7 @@
     "lib": ["ESNext"],
     "sourceMap": true,
     "declaration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
   }
 }
