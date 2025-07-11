@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createProduct } from "./handlers/product";
+import { handleInputErrors, productValidators } from "./middleware";
 
 const router = Router();
 
@@ -8,7 +9,12 @@ router.get("/", (req, res) => {
   res.json("Desde GET");
 });
 
-router.post("/api/products", createProduct);
+router.post(
+  "/api/products",
+  productValidators,
+  handleInputErrors,
+  createProduct
+);
 
 router.put("/", (req, res) => {
   res.json("Desde PUT");
