@@ -14,6 +14,7 @@ async function conecctDB() {
 }
 
 const server = express();
+server.use(express.json());
 conecctDB();
 
 server.use("/", router);
