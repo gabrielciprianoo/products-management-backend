@@ -4,10 +4,6 @@ import db from "./config/db";
 
 async function conecctDB() {
   try {
-    if (!db) {
-      console.log("Database instance is undefined");
-      return;
-    }
     await db.authenticate();
     db.sync();
     console.log("conecction successful");
