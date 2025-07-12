@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { validationResult } from "express-validator";
+import { param, validationResult } from "express-validator";
 import { check } from 'express-validator';
 
 export const handleInputErrors = (
@@ -27,3 +27,7 @@ export const productValidators = [
     .isNumeric().withMessage('Valor no valido')
     .custom(value => value > 0).withMessage('El precio debe ser mayor a cero')
 ];
+
+export const productParamValidator = [
+  param('id').isInt().withMessage('ID no valido')
+]
