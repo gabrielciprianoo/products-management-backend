@@ -3,6 +3,7 @@ import {
   createProduct,
   getProductById,
   getProducts,
+  updateAvailability,
   updateProduct,
 } from "./handlers/product";
 import {
@@ -36,6 +37,13 @@ router.put(
   productParamValidator,
   handleInputErrors,
   updateProduct
+);
+ 
+router.patch(
+  "/api/product/:id",
+  productParamValidator,
+  handleInputErrors,
+  updateAvailability
 );
 
 router.patch("/", (req, res) => {
