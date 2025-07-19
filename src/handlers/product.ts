@@ -46,8 +46,8 @@ export const updateProduct = async (req: Request, res: Response) => {
       return;
     }
 
-    product.update(req.body);
-    product.save();
+    await product.update(req.body);
+    await product.save();
 
     res.json({ data: product });
     
@@ -68,7 +68,7 @@ export const updateAvailability = async (req: Request, res: Response) => {
     }
 
     product.availability =  !product.dataValues.availability;
-    product.save();
+    await product.save();
 
     res.json({ data: product });
     
@@ -88,7 +88,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
       return;
     }
 
-    product.destroy();
+    await product.destroy();
     product.save();
 
     res.json({ data: "Producto Eliminado" });
