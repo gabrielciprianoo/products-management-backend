@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createProduct,
+  deleteProduct,
   getProductById,
   getProducts,
   updateAvailability,
@@ -46,12 +47,13 @@ router.patch(
   updateAvailability
 );
 
-router.patch("/", (req, res) => {
-  res.json("Desde PATCH");
-});
+router.delete(
+  "/api/product/:id",
+  productParamValidator,
+  handleInputErrors,
+  deleteProduct
+);
 
-router.delete("/", (req, res) => {
-  res.json("Desde DELETE");
-});
+
 
 export default router;
