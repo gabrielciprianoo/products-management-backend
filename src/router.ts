@@ -1,6 +1,15 @@
 import { Router } from "express";
-import { createProduct, getProductById, getProducts } from "./handlers/product";
-import { handleInputErrors, productParamValidator, productValidators } from "./middleware";
+import {
+  createProduct,
+  getProductById,
+  getProducts,
+  updateProduct,
+} from "./handlers/product";
+import {
+  buildProductValidators,
+  handleInputErrors,
+  productParamValidator,
+} from "./middleware";
 
 const router = Router();
 
@@ -9,7 +18,7 @@ router.get("/api/products", getProducts);
 
 router.post(
   "/api/products",
-  productValidators,
+  buildProductValidators(["name", "price"]),
   handleInputErrors,
   createProduct
 );
@@ -19,6 +28,14 @@ router.get(
   productParamValidator,
   handleInputErrors,
   getProductById
+);
+
+router.put(
+  "/api/product/:id",
+  buildProductValidators(["name", "price", "availability"]),
+  productParamValidator,
+  handleInputErrors,
+  updateProduct
 );
 
 router.patch("/", (req, res) => {
