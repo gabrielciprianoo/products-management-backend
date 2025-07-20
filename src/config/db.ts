@@ -3,7 +3,8 @@ import { RENDER_DATABASE_URL } from "./data";
 import { Sequelize } from "sequelize-typescript";
 
 const db = new Sequelize(RENDER_DATABASE_URL!, {
-    models:  [ __dirname + '../models/**/*.ts' ]
+    models:  [ __dirname + '../models/**/*.ts' ],
+    logging: false
 });
 
 db.addModels([Product])
