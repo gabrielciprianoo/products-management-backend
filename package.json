@@ -4,7 +4,8 @@
   "description": "backend products administrator app ",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec ts-node src/index.ts"
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "test": "jest --detectOpenHandles"
   },
   "author": "Gabriel Cipriano",
   "license": "ISC",
