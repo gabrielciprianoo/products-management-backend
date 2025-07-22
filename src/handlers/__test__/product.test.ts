@@ -102,3 +102,33 @@ describe("GET /api/products/:id", () => {
     expect(response.body).toHaveProperty("error");
   });
 });
+
+describe("PUT /api/products/:id", () => {
+  test("should check if /api/products/:id exist", async () => {
+    const response = await request(server).put("/api/products/1").send({});
+    expect(response.status).not.toBe(404);
+  });
+
+  test("should validate product update", async () => {
+    const response = await request(server).put("/api/products/1").send({});
+
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty("errors");
+    expect(response.body.errors).toHaveLength(7);
+
+    expect(response.status).not.toBe(201);
+    expect(response.body.errors).not.toHaveLength(2);
+  });
+
+  test("should update a product", async () => {
+    const response = await request(server).put("/api/products/1").send({
+      name: "updated mouse",
+      price: 60,
+      availability: true
+    });
+
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty("data");
+    expect(response.body.data.name).toBe("updated mouse");
+  });
+});
