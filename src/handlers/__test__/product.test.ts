@@ -55,3 +55,42 @@ describe("POST /api/products", () => {
     expect(response.body).not.toHaveProperty("errors");
   });
 });
+
+describe("GET /api/products", () => {
+  
+  test("should check if /api/products exist", async () => {
+    const response = await request(server).get("/api/products");
+    expect(response.status).not.toBe(404);
+  });
+
+  test("should get all products", async () => {
+    const response = await request(server).get("/api/products");
+
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty("data");
+    expect(response.headers['content-type']).toMatch(/json/);
+  });
+
+})
+
+describe("GET /api/products/:id", () => {
+  test("should check if /api/products/:id exist", async () => {
+    const response = await request(server).get("/api/products/1");
+    expect(response.status).not.toBe(404);
+  });
+
+  test("should get a product by id", async () => {
+    const response = await request(server).get("/api/products/1");
+
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty("data");
+    expect(response.headers['content-type']).toMatch(/json/);
+  });
+
+  test("should return 404 for non-existing product", async () => {
+    const response = await request(server).get("/api/products/9999");
+
+    expect(response.status).toBe(404);
+    expect(response.body).toHaveProperty("error");
+  });
+});
