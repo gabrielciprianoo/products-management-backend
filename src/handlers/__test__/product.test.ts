@@ -74,9 +74,18 @@ describe("GET /api/products", () => {
 })
 
 describe("GET /api/products/:id", () => {
+
   test("should check if /api/products/:id exist", async () => {
     const response = await request(server).get("/api/products/1");
     expect(response.status).not.toBe(404);
+    expect(response.body).toHaveProperty("data");
+  });
+
+  test("should check a valid ID in the URL", async () => {
+    const response = await request(server).get("/api/products/invalid-id");
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty("errors");
+    expect(response.body.errors[0].msg).toBe("ID no valido")
   });
 
   test("should get a product by id", async () => {
@@ -89,7 +98,6 @@ describe("GET /api/products/:id", () => {
 
   test("should return 404 for non-existing product", async () => {
     const response = await request(server).get("/api/products/9999");
-
     expect(response.status).toBe(404);
     expect(response.body).toHaveProperty("error");
   });
