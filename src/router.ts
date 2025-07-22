@@ -33,7 +33,7 @@ router.get(
 );
 
 router.put(
-  "/api/product/:id",
+  "/api/products/:id",
   buildProductValidators(["name", "price", "availability"]),
   productParamValidator,
   handleInputErrors,
@@ -41,14 +41,14 @@ router.put(
 );
  
 router.patch(
-  "/api/product/:id",
+  "/api/products/:id",
   productParamValidator,
   handleInputErrors,
   updateAvailability
 );
 
 router.delete(
-  "/api/product/:id",
+  "/api/products/:id",
   productParamValidator,
   handleInputErrors,
   deleteProduct
