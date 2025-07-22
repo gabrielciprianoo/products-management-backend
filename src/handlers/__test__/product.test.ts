@@ -132,3 +132,26 @@ describe("PUT /api/products/:id", () => {
     expect(response.body.data.name).toBe("updated mouse");
   });
 });
+
+describe("PATCH /api/products/:id", () => {
+
+  test("should check if /api/products/:id exist", async () => {
+    const response = await request(server).patch("/api/products/1");
+    expect(response.status).not.toBe(404);
+  });
+
+  test("should update product availability", async () => {
+    const response = await request(server).patch("/api/products/1");
+
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty("data");
+    expect(response.body.data.availability).toBeDefined();
+  });
+
+  test("should return 404 for non-existing product", async () => {
+    const response = await request(server).patch("/api/products/9999");
+    expect(response.status).toBe(404);
+    expect(response.body).toHaveProperty("error");
+  });
+  
+});
