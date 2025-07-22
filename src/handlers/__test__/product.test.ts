@@ -155,3 +155,23 @@ describe("PATCH /api/products/:id", () => {
   });
   
 });
+
+describe("DELETE /api/products/:id", () => {
+ 
+
+  test("should delete a product", async () => {
+    const response = await request(server).delete("/api/products/1");
+
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty("data");
+    expect(response.body.data).toBe("Producto Eliminado");
+    expect(response.status).not.toBe(400);
+    expect(response.status).not.toBe(404);
+  });
+
+  test("should return 404 for non-existing product", async () => {
+    const response = await request(server).delete("/api/products/9999");
+    expect(response.status).toBe(404);
+    expect(response.body).toHaveProperty("error");
+  });
+});
