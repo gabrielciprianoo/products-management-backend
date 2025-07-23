@@ -20,8 +20,8 @@ const options: swaggerJSDoc.Options = {
         description: "Development server",
       },
     ],
-    apis: ["./src/routes/*.ts", "./src/models/*.ts"],
   },
+  apis: ["./src/routes/*.ts", "./src/models/*.ts"]
 };
 
 const swaggerSpec = swaggerJSDoc(options);
