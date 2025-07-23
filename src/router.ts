@@ -39,7 +39,7 @@ router.put(
   handleInputErrors,
   updateProduct
 );
- 
+
 router.patch(
   "/api/products/:id",
   productParamValidator,
@@ -53,7 +53,5 @@ router.delete(
   handleInputErrors,
   deleteProduct
 );
-
-
 
 export default router;
