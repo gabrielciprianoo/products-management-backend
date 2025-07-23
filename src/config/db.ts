@@ -1,8 +1,14 @@
 import Product from "../models/Product.model";
-import { RENDER_DATABASE_URL } from "./data";
 import { Sequelize } from "sequelize-typescript";
+import dotenv from 'dotenv';
 
-const db = new Sequelize(RENDER_DATABASE_URL!, {
+dotenv.config({
+  debug: false,
+  quiet: true 
+});
+
+
+const db = new Sequelize(process.env.RENDER_DATABASE_URL!, {
     models:  [ __dirname + '../models/**/*.ts' ],
     logging: false
 });

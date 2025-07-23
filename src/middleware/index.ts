@@ -41,9 +41,6 @@ export const productValidationRules: Record<string, any> = {
 export function buildProductValidators(fields: string[]) {
   return fields.map((field) => {
     const validator = productValidationRules[field];
-    if (!validator) {
-      throw new Error(`No existe validación para el campo: ${field}`);
-    }
     return validator;
   });
 }
