@@ -2,6 +2,7 @@ import express from "express";
 import router from "./router";
 import db from "./config/db";
 import cors, { CorsOptions} from 'cors';
+import morgan from 'morgan';
 
 async function conecctDB() {
   await db.authenticate();
@@ -22,6 +23,7 @@ const corsOptions : CorsOptions = {
 server.use(cors(corsOptions));
 
 server.use(express.json());
+server.use(morgan('dev'))
 conecctDB();
 
 server.use("/", router);
